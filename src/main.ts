@@ -8,6 +8,8 @@ import i18n from './plugins/i18n'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'virtual:svg-icons-register'
 import registerGlobComp from './components' //全域註冊組件
+import pinia from '@/store';
+import router from '@/routetr';
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -17,4 +19,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(ElementPlus)
 .use(i18n)
 .use(registerGlobComp)
+.use(pinia)
+.use(router)
 .mount('#app')

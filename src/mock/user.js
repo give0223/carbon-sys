@@ -65,4 +65,16 @@ export default [
       return resultSuccess(checkUser)
     },
   },
+  // 失敗的請求
+  {
+    url: '/api/error',
+    method: 'get',
+    response: () => {
+      return {
+        code: 1,
+        message: '密碼錯誤!',
+        data: null,
+      }
+    },
+  },
 ]

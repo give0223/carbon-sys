@@ -6,6 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
     "strict": true,
     "noEmit": true,
     "paths": {
@@ -17,6 +18,21 @@
     // 加入SVG圖示types
     "types": ["element-plus/global","vite-plugin-svg-icons","node"],
     "esModuleInterop": true,
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowJs": true,
+
+    /* Bundler mode */
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "jsx": "preserve",
 
   },
   "include": [
@@ -24,6 +40,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "vite.config.ts"],
+    "vite.config.ts",
+    "./shims-vue.d.ts"],
   "exclude": ["node_modules", "dist", "**/*.js"],
 }

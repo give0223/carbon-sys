@@ -16,10 +16,11 @@ declare interface ViteEnv {
  * @param name ==> 列表別名
  * @param component ==> View文件路徑
  * @param redirect ==> 重新定向地址
+ * 
  * @param meta ==> 列表標題資訊
  * @param meta.icon ==> 列表圖標
  * @param meta.title ==> 列表標題
- * @param meta.activeMenu ==> 當前路為詳情頁時，激活的列表
+ * @param meta.activeMenu ==> 當前路徑為詳情頁時，激活的列表
  * @param meta.isLink ==> 是否外部鏈接
  * @param meta.isHide ==> 是否隱藏
  * @param meta.isFull ==> 是否全螢幕

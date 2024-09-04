@@ -1,20 +1,25 @@
 import axios from 'axios';
 import { AxiosInstance , AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
+import { useUserStore } from '@/store/modules/user'
 import { ElMessage } from 'element-plus';
-import {localGet} from '@/utils/cache';
-import {TOKEN_KEY} from '@/enums/cacheEnum';
+import { ResultData } from './type';
+import { ResultEnum } from '@/enums/httpEnums'
+import {LOGIN_URL} from '@/config/config';
+import { RESETSTORE } from '../reset'
+import router from '@/routetr';
 
 const service: AxiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 0,
 })
 
 /* 請求攔截器 */
 service.interceptors.request.use(
   (config) => {
-    const token = localGet(TOKEN_KEY)
+    const userStore = useUserStore()
+    const token = userStore.token
     if (token) {
-      config.headers.Authorization = `${token}`
+      config.headers.token = token
     }
     return config
   },
@@ -27,27 +32,29 @@ service.interceptors.request.use(
 /* 響應攔截器 */
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, message, data } = response.data
-
-    // 根據自訂義代碼判斷請求是否成功
-    if (code === 0) {
-      // 將組件用數據返回
-      return data
-    } else {
-      // 處理錯誤呼叫
-      ElMessage.error(message)
-      return Promise.reject(new Error(message))
+    const { data } = response
+    // * 登入失敗（code == 203）
+    if (data.code === ResultEnum.EXPIRE) {
+      RESETSTORE()
+      ElMessage.error(data.message || ResultEnum.ERRMESSAGE)
+      router.replace(LOGIN_URL)
+      return Promise.reject(data)
     }
+
+    if (data.code && data.code !== ResultEnum.SUCCESS) {
+      ElMessage.error(data.message || ResultEnum.ERRMESSAGE)
+      return Promise.reject(data)
+    }
+    return data
   },
   (error: AxiosError) => {
-    // 處理HTTP代碼錯誤
+    // 處理HTTP錯誤
     let message = ''
     // HTTP 狀態碼
     const status = error.response?.status
     switch (status) {
       case 401:
         message = 'token 失效，請重新登入'
-        // 這裡可以觸發退出的Action
         break
       case 403:
         message = '拒絕訪問'
@@ -67,30 +74,42 @@ service.interceptors.response.use(
   },
 )
 
-/* 導出封裝的請求方法 */
+
+/**
+ * @description: 導出封裝的請求方法
+ * @returns {*}
+ */
 const http = {
-  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return service.get(url, config)
+  get<T>(
+    url: string,
+    params?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
+    return service.get(url, { params, ...config })
   },
 
-  post<T = any>(
+  post<T>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig,
-  ): Promise<T> {
+  ): Promise<ResultData<T>> {
     return service.post(url, data, config)
   },
 
-  put<T = any>(
+  put<T>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig,
-  ): Promise<T> {
+  ): Promise<ResultData<T>> {
     return service.put(url, data, config)
   },
 
-  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return service.delete(url, config)
+  delete<T>(
+    url: string,
+    data?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
+    return service.delete(url, { data, ...config })
   },
 }
 

@@ -64,7 +64,7 @@ const getStyle = computed(
   animation: loadingCircle 5s infinite linear;
 }
 
-/* 旋转动画 */
+/* 旋轉動畫 */
 @keyframes loadingCircle {
   0% {
     transform: rotate(0);

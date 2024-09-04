@@ -5,14 +5,18 @@ export interface LoginData {
 }
 
 export interface LoginRes {
+  code: number
+  message: string
   token: string
 }
 
-export interface UserInfoRes {
-  userId: string
-  username: string
+export interface UserRes  {
+  userId?: string
+  name: string
   avatar: string
-  desc: string
+  buttons: string[]
+  roles: string[]
+  routes: string[]
 }
 
 // 用戶權限資料類型
@@ -24,7 +28,7 @@ export interface AuthInfo {
 
 // 用戶訊息類型
 export interface UserInfo {
-  userId: string
-  username: string
+  userId?: string
+  name: string
   avatar: string
 }

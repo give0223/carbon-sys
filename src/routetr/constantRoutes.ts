@@ -45,15 +45,15 @@ export const staticRoutes: RouteRecordRaw[] = [
       },
     ],
   },
-  // {
-  //   path: '/data-screen',
-  //   name: 'DataScreen',
-  //   component: () => import('@/views/data-screen/index.vue'),
-  //   meta: {
-  //     icon: 'DataLine',
-  //     title: '數據資料表',
-  //   },
-  // },
+  {
+    path: '/dashBoard',
+    name: 'Dashboard',
+    component: () => import('@/views/dashBoard/index.vue'),
+    meta: {
+      icon: 'DataLine',
+      title: '數據資料表',
+    },
+  },
   // 防止出現No match found for location with path的警告
   {
     path: '/:catchAll(.*)',
@@ -65,7 +65,7 @@ export const staticRoutes: RouteRecordRaw[] = [
 ]
 
 /**
- * @description 404 路由
+ * @description 未找到路由給 404 路由
  */
 export const notFoundRouter = {
   path: '/:pathMatch(.*)*',

@@ -36,7 +36,7 @@ export default defineConfig((config) => {
       // 自訂代理規則，配合後端進行Api呼叫等。
       proxy: {
         [env.VITE_APP_BASE_API]: {
-          target: 'http://localhost:3000',// 後端進行Api
+          target: 'https://c56d3c9b-adac-4e61-9690-fcd942efff93.mock.pstmn.io',// 後端進行Api
           changeOrigin: true,// 允許websockets跨域
           rewrite: (path) => path.replace(/^\/dev-api/, ''),// 請求前綴
         },

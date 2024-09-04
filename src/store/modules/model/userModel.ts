@@ -1,4 +1,4 @@
-import type{UserInfo} from '@/typings/store.d.ts';
+import type { UserInfo } from '@/api/user/types'
 import { Nullable } from 'element-plus/es/components/cascader-panel/src/node';
 
 export interface LoginParams {

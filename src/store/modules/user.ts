@@ -1,23 +1,21 @@
 // 用戶訊息
 import { defineStore } from 'pinia'
-import { getUserInfo ,login} from '@/api';
+import { getUserInfo,logout} from '@/api';
 import {LoginParams} from './model/userModel';
 import {localGet,localSet} from '@/utils/cache.ts';
 import {TOKEN_KEY,USER_INFO_KEY} from '@/enums/cacheEnum.ts';
-import type {UserInfo} from '@/typings/store.d.ts';
+import type {UserInfo} from '@/api/user/types.ts';
 import type {UserState} from './model/userModel.ts';
+import {useAuthStore} from './auth.ts';
+import {RESETSTORE} from '@/utils/reset.ts';
 
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
       userInfo: null,
-      token: undefined
+      token: ''
   }),
   getters: {
-    // 取得用戶訊息
-    getUserInfo(): UserInfo {
-      return (this.userInfo as UserInfo) || localGet(USER_INFO_KEY) || {}
-    },
     // 取得token
     getToken(): string {
       return (this.token as string) || localGet(TOKEN_KEY) || ''
@@ -26,34 +24,29 @@ export const useUserStore = defineStore({
   actions: {
     // 設置token
     setToken(token: string | undefined) {
+      console.log("token",token)
       this.token = token ? token : ''
       localSet(TOKEN_KEY, token)
     },
     // 設置用戶訊息
-    setUserInfo(info: UserInfo) {
-      this.userInfo = info
-      localSet(USER_INFO_KEY, info)
-    },
-    // 登入
-    async login(params: LoginParams) {
-      try {
-        const data = await login(params)
-
-        const { token } = data
-        this.setToken(token)
-        this.getUserInfoAction()
-      } catch (error) {
-        return Promise.reject(error)
-      }
+    setUserInfo(userInfo: UserInfo) {
+      this.userInfo = userInfo
     },
     // 取得用戶訊息
-    async getUserInfoAction() {
-      try {
-        const data = await getUserInfo()
-        this.setUserInfo(data)
-      } catch (error) {
-        return Promise.reject(error)
-      }
+    async GetInfoAction() {
+      const {data} = await getUserInfo()
+      const { avatar, buttons, name, roles, routes } = data
+      console.log("取得用戶訊息:",data)
+      const authStore = useAuthStore()
+      // 儲存用戶訊息
+      this.setUserInfo({avatar,name})
+      // 儲存用戶權限
+      authStore.setAuth({buttons,roles,routes})
     },
+    // 登出
+    async Logout(){
+      await logout()
+      RESETSTORE()
+    }
   }
 })

@@ -28,6 +28,15 @@ export default defineConfig((config) => {
         "@": path.resolve(__dirname,"src") //相對路徑使用@代替
       }
     },
+    // css 配置
+    css: {
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variable/index.scss";',
+        },
+      },
+    },
     // 代理伺服器
     server: {
       port: Number(env.VITE_APP_PORT),

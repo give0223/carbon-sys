@@ -36,7 +36,9 @@ const collapse = computed(() => settingsStore.collapse);
 const screenWidth = ref(0);
 const listeningWindow = useDebounceFn(() => {
   screenWidth.value = document.body.clientWidth;
+  // 視窗小於 1200 時收合左邊選單
   if (!collapse.value && screenWidth.value < 1200) settingsStore.changeCollapse();
+  // 視窗大於 1200 時展開左邊選單
   if (collapse.value && screenWidth.value > 1200) settingsStore.changeCollapse();
 }, 100);
 

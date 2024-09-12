@@ -1,7 +1,7 @@
 <template>
   <div class="logo-container flex-center">
     <a href="/">
-      <img class="logo" alt="logo" src="/logo.png" />
+      <img class="logo" alt="logo" src="../../assets/icons/hippo.svg" />
       <h1 class="title" v-if="!collapse">碳盤管理系統</h1>
     </a>
   </div>

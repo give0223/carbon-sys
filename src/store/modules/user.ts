@@ -45,7 +45,7 @@ export const useUserStore = defineStore({
     },
     // 登出
     async Logout(){
-      await logout()
+      // await logout()
       RESETSTORE()
     }
   }

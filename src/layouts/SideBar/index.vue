@@ -25,6 +25,10 @@ import { useRoute } from "vue-router";
 import Logo from "@/layouts/Logo/index.vue";
 import SubMenu from "./components/SubMenu/index.vue";
 
+defineOptions({
+  name: "LayoutSideBar",
+});
+
 const settingsStore = useSettingsStore();
 const authStore = useAuthStore();
 const route = useRoute();

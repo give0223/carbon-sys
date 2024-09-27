@@ -10,7 +10,10 @@
 
 <script setup lang="ts">
 import { useSettingsStore } from "@/store/modules/settings";
-import { IconifyIcon } from "@/components/IconifyIcon";
+
+defineOptions({
+  name: "Refresh",
+});
 
 const settingsStore = useSettingsStore();
 const onRefresh = () => {

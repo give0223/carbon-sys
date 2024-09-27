@@ -6,7 +6,7 @@ import { ResultData } from './type';
 import { ResultEnum } from '@/enums/httpEnums'
 import {LOGIN_URL} from '@/config/config';
 import { RESETSTORE } from '../reset'
-import router from '@/routetr';
+import router from '@/router';
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,

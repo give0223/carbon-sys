@@ -10,8 +10,9 @@ $end-color: #ffffff;
 
   .form-header {
     margin-bottom: 40px;
-
-    .title-tips {
+    
+    .title {
+      text-align: center;
       margin-top: 29px;
       font-size: 26px;
       font-weight: 400;
@@ -19,11 +20,12 @@ $end-color: #ffffff;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-
-    .title {
-      font-size: 54px;
-      font-weight: 500;
-      color: var(--el-color-white);
+    .title-logo{
+      text-align: center;
+      img {
+        width: 150px;
+        height: 80px;
+      }
     }
   }
 

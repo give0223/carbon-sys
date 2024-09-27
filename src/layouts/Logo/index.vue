@@ -1,7 +1,7 @@
 <template>
   <div class="logo-container flex-center">
-    <a href="/">
-      <img class="logo" alt="logo" src="../../assets/icons/hippo.svg" />
+    <a href="/index">
+      <img class="logo" alt="logo" src="../../assets/icons/carbonlogo_white.svg" />
       <h1 class="title" v-if="!collapse">碳盤管理系統</h1>
     </a>
   </div>
@@ -10,6 +10,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
+
+defineOptions({
+  name: "Logo",
+});
 
 const settingsStore = useSettingsStore();
 const collapse = computed(() => settingsStore.collapse);
@@ -39,8 +43,8 @@ const collapse = computed(() => settingsStore.collapse);
 
   .logo {
     display: inline-block;
-    width: 32px;
-    height: 32px;
+    width: 62px;
+    height: 62px;
     vertical-align: middle;
   }
 }

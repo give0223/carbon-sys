@@ -12,6 +12,10 @@
 import { computed } from "vue";
 import type { CSSProperties } from "vue";
 
+defineOptions({
+  name: "SvgIcon",
+});
+
 const props = defineProps({
   prefix: {
     type: String,
@@ -54,14 +58,28 @@ const getStyle = computed(
 </script>
 
 <style lang="scss" scoped>
-.svg-icon {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: -0.15em;
+.el-icon {
+  --color: inherit;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  font-size: inherit;
+  line-height: 1em;
+  color: var(--color);
   fill: currentColor;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
 }
+
 .svg-icon-spin {
-  animation: loadingCircle 5s infinite linear;
+  animation: circle 1.5s infinite linear;
 }
 
 /* 旋轉動畫 */

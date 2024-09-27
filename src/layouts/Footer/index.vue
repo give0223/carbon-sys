@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: "LayoutFooter" });
 import { ref } from "vue";
 const fullYear = ref(new Date().getFullYear());
 </script>

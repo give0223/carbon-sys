@@ -6,6 +6,10 @@
 import { computed, useAttrs } from "vue";
 import { Icon as IconifyIcon } from "@iconify/vue";
 
+defineOptions({
+  name: "IconifyIcon",
+});
+
 // 定義 props，便於定制圖標屬性
 const props = defineProps({
   icon: {

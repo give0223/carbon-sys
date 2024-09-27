@@ -16,16 +16,16 @@ export const staticRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/login/index.vue'),
   },
   {
-    path: '/404',
     name: '404',
+    path: '/404',
     meta: {
       isHide: true,
     },
     component: () => import('@/views/error-page/index.vue'),
   },
   {
-    path: '/',
     name: 'LAYOUT',
+    path: '/',
     component: LAYOUT,
     redirect: HOME_URL,
     meta: {
@@ -34,8 +34,8 @@ export const staticRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/index',
         name: 'Index',
+        path: '/index',
         component: () => import('@/views/home/index.vue'),
         meta: {
           title: '首頁',
@@ -46,13 +46,21 @@ export const staticRoutes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/dashBoard',
     name: 'Dashboard',
-    component: () => import('@/views/dashBoard/index.vue'),
-    meta: {
-      icon: 'DataLine',
-      title: '數據資料表',
-    },
+    path: '/dashBoard',
+    component: LAYOUT,
+    redirect: '/dashBoard',
+    children: [
+      {
+        name: 'Dashboard',
+        path: '/dashBoard',
+        component: () => import('@/views/dashBoard/index.vue'),
+        meta: {
+          icon: 'DataLine',
+          title: '數據資料表',
+        },
+      },
+    ],
   },
   // 防止出現No match found for location with path的警告
   {
@@ -68,7 +76,7 @@ export const staticRoutes: RouteRecordRaw[] = [
  * @description 未找到路由給 404 路由
  */
 export const notFoundRouter = {
-  path: '/:pathMatch(.*)*',
   name: 'notFound',
+  path: '/:pathMatch(.*)*',
   redirect: '404',
 }

@@ -21,6 +21,10 @@
 import { useRoute, useRouter, RouteRecordRaw } from "vue-router";
 import { computed } from "vue";
 
+defineOptions({
+  name: "Breadcrumb",
+});
+
 const route = useRoute();
 const router = useRouter();
 const handleLink = (item: RouteRecordRaw) => {

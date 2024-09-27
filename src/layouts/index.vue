@@ -6,7 +6,9 @@
       <div class="layout-main" :class="{ 'is-collapse': collapse }">
         <!-- Header -->
         <div class="layout-header fixed-header" :class="{ 'is-collapse': collapse }">
+          <!-- NavBar -->
           <LayoutNavBar />
+          <!-- TabsBar -->
           <!-- <LayoutTabsBar /> -->
         </div>
         <div class="app-main-container">
@@ -17,6 +19,8 @@
         </div>
       </div>
     </div>
+    <!-- 黑暗模式切換 -->
+    <ThemeDrawer />
   </div>
 </template>
 
@@ -29,6 +33,11 @@ import LayoutNavBar from "./NavBar/index.vue";
 // import LayoutTabsBar from './TabsBar/index.vue';
 import LayoutMain from "./Main/index.vue";
 import LayoutFooter from "./Footer/index.vue";
+import ThemeDrawer from "./NavBar/components/ThemeDrawer/index.vue";
+
+defineOptions({
+  name: "Layout",
+});
 
 const settingsStore = useSettingsStore();
 const collapse = computed(() => settingsStore.collapse);
@@ -59,34 +68,40 @@ onBeforeUnmount(() => {
   width: calc(100% - $base-left-menu-width);
 }
 
-.layout-container-vertical {
-  &.fixed {
-    padding-top: calc(#{$base-top-bar-height} + #{$base-tabs-bar-height});
-  }
-
-  .layout-main {
-    min-height: 100%;
-    margin-left: $base-left-menu-width;
-
-    &.is-collapse {
-      margin-left: $base-left-menu-width-min;
-      border-right: 0;
+.layout-admin-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  .layout-container-vertical {
+    &.fixed {
+      padding-top: calc(#{$base-top-bar-height} + #{$base-tabs-bar-height});
     }
 
-    .layout-header {
-      box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-
-      &.fixed-header {
-        @include fix-header;
-      }
+    .layout-main {
+      min-height: 100%;
+      margin-left: $base-left-menu-width;
 
       &.is-collapse {
-        width: calc(100% - $base-left-menu-width-min);
+        margin-left: $base-left-menu-width-min;
+        border-right: 0;
       }
-    }
 
-    .app-main-container {
-      padding: 20px;
+      .layout-header {
+        box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+
+        &.fixed-header {
+          @include fix-header;
+        }
+
+        &.is-collapse {
+          width: calc(100% - $base-left-menu-width-min);
+        }
+      }
+
+      .app-main-container {
+        padding: 20px;
+      }
     }
   }
 }

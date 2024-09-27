@@ -11,6 +11,11 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
+
+defineOptions({
+  name: "LayoutMain",
+});
+
 const settingsStore = useSettingsStore();
 const isShow = ref(true);
 watch(

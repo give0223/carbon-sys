@@ -12,7 +12,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       name: 'Order',
       path: '/order',
       component: LAYOUT,
-      redirect: '/order/list',
+      redirect: '/order/OrderList',
       meta: {
         title: '訂單管理',
         icon: 'ShoppingTrolley',
@@ -20,20 +20,20 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       children: [
         {
           name: 'OrderList',
-          path: '/order/list',
-          component: () => import('@/views/order/list/index.vue'),
+          path: '/order/OrderList',
+          component: () => import('@/views/order/orderList/index.vue'),
           meta: {
-            title: '订单列表',
-            icon: 'Grid',
+            title: '訂單列表',
+            icon: 'ShoppingBag',
           },
         },
         {
-          name: 'Label',
-          path: '/order/label',
-          component: () => import('@/views/order/refund/index.vue'),
+          name: 'OrderRefund',
+          path: '/order/OrderRefund',
+          component: () => import('@/views/order/orderRefund/index.vue'),
           meta: {
             title: '退款管理',
-            icon: 'Grid',
+            icon: 'Coin',
           },
         },
       ],

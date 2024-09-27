@@ -86,7 +86,9 @@ const initDynamicRouter = async() => {
 
     // 5.處理subMenu資料,靜態路由和動態路由拼接,過濾isHide為true的路由
     const menuList = getMenuList([...staticRoutes, ...routerList] as unknown as Menu.MenuOptions[])
+    console.log("處理subMenu資料",menuList)
     authStore.setAuthMenuList(menuList)
+    console.log("authMenuList:",authStore.authMenuList)
   }
   catch (error) {
     // 當按鈕或Menu獲取失敗時,重新導向登入頁
@@ -102,11 +104,14 @@ function filterAsyncRoutes(
   dynamicRoutes: RouteRecordRaw[],
   authRouterList: string[],
 ) {
-  console.log("dynamicRoutes:",dynamicRoutes)
-  console.log("authRouterList:",authRouterList)
   return dynamicRoutes.filter((route) => {
+    console.log("route:",route)
     // 1.如果route的name在routeName中沒有,直接過濾掉
-    if (!authRouterList.includes(route.name as string)) return false
+    console.log("authRouterList:",authRouterList)
+    console.log("route.name:",route.name)
+    if (!authRouterList.includes(route.name as string)) { 
+      return false 
+    }
 
     // 2.如果當前route還有子路由,就針對子路由也進行過濾
     if (route.children && route.children.length > 0) {

@@ -11,7 +11,7 @@
       </el-col>
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
-          <!-- <Refresh /> -->
+          <Refresh />
           <ScreenFull />
           <Settings />
           <User />
@@ -24,6 +24,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
+import ScreenFull from "./components/ScreenFull/index.vue";
+import Settings from "./components/Settings/index.vue";
+import User from "./components/User/index.vue";
+import Refresh from "./components/Refresh/index.vue";
+import Breadcrumb from "./components/Breadcrumb/index.vue";
+
+defineOptions({
+  name: "LayoutNavBar",
+});
 
 const settingsStore = useSettingsStore();
 const collapse = computed(() => settingsStore.collapse);

@@ -25,6 +25,10 @@ import { useUserStore } from "@/store/modules/user";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { LOGIN_URL } from "@/config/config";
 
+defineOptions({
+  name: "User",
+});
+
 const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
@@ -45,6 +49,7 @@ const logout = () => {
     type: "warning",
   }).then(async () => {
     await userStore.Logout();
+    console.log("route.fullPath:", route.fullPath);
     router.push({ path: LOGIN_URL, query: { redirect: route.fullPath } });
     ElMessage.success("登出成功!!");
   });

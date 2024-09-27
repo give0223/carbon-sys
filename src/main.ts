@@ -11,7 +11,7 @@ import registerGlobComp from './components' //全域註冊組件
 import pinia from '@/store';
 import router from '@/router';
 // 加入異步路由
-import '@/router/initDynamicRouter.ts'
+import '@/router/initDynamicRouter'
 import directives from '@/directives/index'; //引入註冊自訂指令
 
 

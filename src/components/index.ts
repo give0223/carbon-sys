@@ -5,11 +5,12 @@ import { Auth } from './Auth';
 import {SvgIcon}  from './SvgIcon'
 import { IconifyIcon } from './IconifyIcon';
 import { SwitchDark } from './SwitchDark';
+import {LineChart} from './LineChart';
 
 // 將引入組件放入Components
 const Components: {
   [propName: string]: Component
-} = { Auth, SvgIcon, IconifyIcon, SwitchDark }
+} = { Auth, SvgIcon, IconifyIcon, SwitchDark,LineChart }
 
 export default {
   install: (app: App) => {

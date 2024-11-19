@@ -21,7 +21,7 @@
         >
           <div class="form-header">
             <div class="title-logo">
-              <img src="../../assets/icons/carbonlogo.svg" alt="" />
+              <SvgIcon name="carbonlogo" :size="[200, 80]" />
             </div>
             <div class="title">碳管理系統平台</div>
           </div>
@@ -61,13 +61,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/modules/user";
 import { ElNotification, type FormInstance } from "element-plus";
 import { User, Lock } from "@element-plus/icons-vue";
 import { LOGIN_URL } from "@/config/config";
 import { login } from "@/api";
+import SvgIcon from "@/components/SvgIcon/src/SvgIcon.vue";
 
 defineOptions({
 	name: "Login",
@@ -114,7 +114,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 	await formEl.validate(async (valid) => {
 		if (!valid) return;
 		try {
-			console.log("submit!");
 			loading.value = true;
 			const { data } = await login(ruleForm);
 			userStore.setToken(data.token);
@@ -123,6 +122,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 				title: "Success",
 				message: "登入成功",
 				type: "success",
+				duration: 1000,
 			});
 		} catch (error) {
 			console.log("error submit!", error);

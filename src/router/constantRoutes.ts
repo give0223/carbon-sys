@@ -8,8 +8,8 @@ const LAYOUT = () => import('@/layouts/index.vue')
  */
 export const staticRoutes: RouteRecordRaw[] = [
   {
+    name: 'Login',
     path: LOGIN_URL,
-    name: 'login',
     meta: {
       isHide: true,
     },
@@ -46,13 +46,13 @@ export const staticRoutes: RouteRecordRaw[] = [
     ],
   },
   {
-    name: 'Dashboard',
+    name: 'DashBoardLayout',
     path: '/dashBoard',
     component: LAYOUT,
     redirect: '/dashBoard',
     children: [
       {
-        name: 'Dashboard',
+        name: 'DashBoard',
         path: '/dashBoard',
         component: () => import('@/views/dashBoard/index.vue'),
         meta: {

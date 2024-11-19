@@ -10,7 +10,7 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="logout">
-          <svg-icon name="logout" size="16px" />
+          <SvgIcon name="logout" />
           <span>登出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "@/store/modules/user";
 import { ElMessage, ElMessageBox } from "element-plus";

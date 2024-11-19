@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <svg-icon name="home"></svg-icon>
+      <SvgIcon name="home" />
       首頁
     </div>
   </div>
@@ -12,3 +12,5 @@ defineOptions({
   name: "Home",
 });
 </script>
+
+<style lang="scss" scoped></style>

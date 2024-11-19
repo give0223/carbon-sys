@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useAuthStore } from "@/store/modules/auth";
 
 defineOptions({

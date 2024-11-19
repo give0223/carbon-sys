@@ -1,14 +1,13 @@
 <template>
   <div class="layout-footer-container">
-    Copyright
-    <svg-icon name="copyright" size="16px" color="rgba(0, 0, 0, 0.45)" />
+    Copyright &#169;
     {{ fullYear }}Vincent-Lin
   </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: "LayoutFooter" });
-import { ref } from "vue";
+
 const fullYear = ref(new Date().getFullYear());
 </script>
 

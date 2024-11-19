@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, computed, ref } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
 import { useDebounceFn } from "@vueuse/core";
 import LayoutSideBar from "./SideBar/index.vue";

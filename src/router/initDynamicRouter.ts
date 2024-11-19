@@ -105,7 +105,7 @@ function filterAsyncRoutes(
   authRouterList: string[],
 ) {
   return dynamicRoutes.filter((route) => {
-    console.log("route:",route)
+    console.log("過濾路由:",route)
     // 1.如果route的name在routeName中沒有,直接過濾掉
     console.log("authRouterList:",authRouterList)
     console.log("route.name:",route.name)

@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
 import { Sunny, Moon } from "@element-plus/icons-vue";
 import { useTheme } from "@/hooks/useTheme";

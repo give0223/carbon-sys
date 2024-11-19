@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import type { CSSProperties } from "vue";
 
 defineOptions({
@@ -17,14 +16,14 @@ defineOptions({
 });
 
 const props = defineProps({
-  prefix: {
-    type: String,
-    default: "icon",
-  },
   // SVG圖片名稱
   name: {
     type: String,
     required: true,
+  },
+  prefix: {
+    type: String,
+    default: "icon",
   },
   // 顏色
   color: {
@@ -33,8 +32,8 @@ const props = defineProps({
   },
   // 圖示大小
   size: {
-    type: [Number, String],
-    default: 20,
+    type: Array,
+    default: () => [16, 16],
   },
   // 是否旋轉
   spin: {
@@ -47,11 +46,13 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 const getStyle = computed(
   (): CSSProperties => {
     const { size } = props;
-    let s = `${size}`;
-    s = `${s.replace("px", "")}px`;
+    let w = `${size[0]}`;
+    let h = `${size[1]}`;
+    w = `${w.replace("px", "")}px`;
+    h = `${h.replace("px", "")}px`;
     return {
-      width: s,
-      height: s,
+      width: w,
+      height: h,
     };
   }
 );

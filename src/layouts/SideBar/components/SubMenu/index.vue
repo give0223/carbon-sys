@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import { Menu } from "@element-plus/icons-vue";
-import { defineProps } from "vue";
 import { useRouter } from "vue-router";
 
 defineOptions({

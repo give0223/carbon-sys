@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useAttrs } from "vue";
 import { Icon as IconifyIcon } from "@iconify/vue";
 
 defineOptions({

@@ -3,6 +3,7 @@ import ElementPlus from 'element-plus'
 import  'normalize.css'
 import 'element-plus/dist/index.css'
 import'element-plus/theme-chalk/dark/css-vars.css';
+import '@/styles/master.scss';
 import App from './App.vue'
 import i18n from './plugins/i18n'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

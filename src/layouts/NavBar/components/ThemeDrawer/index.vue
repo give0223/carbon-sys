@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import mittBus from "@/utils/mittBus";
-import { ref } from "vue";
 
 defineOptions({
   name: "ThemeDrawer",

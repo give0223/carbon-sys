@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, ref, watch } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
 
 defineOptions({

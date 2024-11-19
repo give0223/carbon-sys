@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
 import ScreenFull from "./components/ScreenFull/index.vue";
 import Settings from "./components/Settings/index.vue";

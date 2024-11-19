@@ -1,5 +1,6 @@
 import { defineConfig,loadEnv  } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite';
 import path from 'path';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { viteMockServe } from 'vite-plugin-mock';
@@ -11,6 +12,10 @@ export default defineConfig((config) => {
 
   return {
     plugins: [vue(),
+      AutoImport({
+        imports: ["vue","vue-i18n"],
+        dts: "src/auto-imports.d.ts"
+      }),  
       // SVG圖示配置
       createSvgIconsPlugin({
         // 指定SVG圖檔位置
@@ -30,9 +35,11 @@ export default defineConfig((config) => {
     },
     // css 配置
     css: {
+      // css預處理
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
+          // 全域共享變數檔案
           additionalData: '@import "./src/styles/variable/index.scss";',
         },
       },

@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
 import { useAuthStore } from "@/store/modules/auth";
 import { useRoute } from "vue-router";
